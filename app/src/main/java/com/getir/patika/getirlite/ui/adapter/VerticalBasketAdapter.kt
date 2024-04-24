@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.getir.patika.getirlite.R
 import com.getir.patika.getirlite.data.entity.CartProduct
-import com.getir.patika.getirlite.data.entity.Product
 import com.getir.patika.getirlite.databinding.BasketProductBinding
 
 class VerticalBasketAdapter(private var products: List<CartProduct>) :

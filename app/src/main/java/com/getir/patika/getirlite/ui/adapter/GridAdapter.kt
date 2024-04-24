@@ -11,7 +11,7 @@ import com.getir.patika.getirlite.R
 import com.getir.patika.getirlite.data.entity.CartProduct
 import com.getir.patika.getirlite.data.entity.Product
 import com.getir.patika.getirlite.databinding.ProductGridItemBinding
-import com.getir.patika.getirlite.ui.viewmodel.CartViewModel
+import com.getir.patika.getirlite.viewmodel.CartViewModel
 
 class GridAdapter(private var products: List<Product>,
                   private val viewModelCartViewModel: CartViewModel,

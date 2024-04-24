@@ -1,4 +1,4 @@
-package com.getir.patika.getirlite.ui.viewmodel
+package com.getir.patika.getirlite.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

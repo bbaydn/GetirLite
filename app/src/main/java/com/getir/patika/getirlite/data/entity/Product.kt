@@ -10,14 +10,14 @@ import java.io.Serializable
 data class Product(
     val id: String,
     val name: String?,
-    val attribute: String?, // Ekstra açıklamalar veya özellikler için kullanılabilir
-    val shortDescription: String?, // Ürünün kısa açıklaması
-    val thumbnailURL: String?, // Ürünün küçük resmi
-    val imageURL: String?, // Ürünün büyük resmi
-    val price: Double?, // Ürün fiyatı, bazı API yanıtlarında yok
-    val priceText: String?, // Fiyatın metin olarak gösterimi, bazı API yanıtlarında yok
-    val category: String?, // Ürünün ait olduğu kategori (eğer varsa)
-    val productCount: Int?, // Eğer ürün bir kategoriye aitse, o kategorideki ürün sayısı
+    val attribute: String?,
+    val shortDescription: String?,
+    val thumbnailURL: String?,
+    val imageURL: String?,
+    val price: Double?,
+    val priceText: String?,
+    val category: String?,
+    val productCount: Int?,
     var products: List<Product>?
 )
 : Parcelable

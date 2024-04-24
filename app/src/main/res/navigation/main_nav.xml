@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.getir.patika.getirlite.listing.ListFragment"
+        android:name="com.getir.patika.getirlite.ui.fragment.ListFragment"
         android:label="fragment_list"
         tools:layout="@layout/fragment_list" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.getir.patika.getirlite.detail.DetailFragment"
+        android:name="com.getir.patika.getirlite.ui.fragment.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/basketFragment"
-        android:name="com.getir.patika.getirlite.basket.BasketFragment"
+        android:name="com.getir.patika.getirlite.ui.fragment.BasketFragment"
         android:label="fragment_basket"
         tools:layout="@layout/fragment_basket" />
 </navigation>

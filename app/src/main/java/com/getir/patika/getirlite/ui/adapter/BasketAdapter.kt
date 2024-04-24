@@ -1,24 +1,12 @@
 package com.getir.patika.getirlite.ui.adapter
 
-import android.animation.ObjectAnimator
-import android.content.Context
-import android.content.res.Resources
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.view.animation.DecelerateInterpolator
 import androidx.recyclerview.widget.RecyclerView
-import androidx.navigation.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.getir.patika.getirlite.data.entity.CartProduct
 import com.getir.patika.getirlite.data.entity.Product
 import com.getir.patika.getirlite.databinding.BasketProductBinding
-import com.getir.patika.getirlite.databinding.GridListItemBinding
-import com.getir.patika.getirlite.databinding.HorizontalListItemBinding
-import com.getir.patika.getirlite.databinding.ProductGridItemBinding
 import com.getir.patika.getirlite.databinding.ProductHorizontalItemBinding
-import com.getir.patika.getirlite.listing.ListFragmentDirections
 
 
 class BasketAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

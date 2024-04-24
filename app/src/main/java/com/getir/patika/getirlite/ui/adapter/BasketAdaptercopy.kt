@@ -38,12 +38,10 @@ class BasketAdaptercopy(private val mContext: Context) :
 
     class DiffCallback : DiffUtil.ItemCallback<CartProduct>() {
         override fun areItemsTheSame(oldItem: CartProduct, newItem: CartProduct): Boolean {
-            // ID'ye göre eşsizlik kontrolü yapılır.
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: CartProduct, newItem: CartProduct): Boolean {
-            // İçeriklerin değişip değişmediği kontrol edilir.
             return oldItem == newItem
         }
     }

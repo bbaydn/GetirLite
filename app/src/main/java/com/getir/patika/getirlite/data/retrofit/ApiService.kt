@@ -1,4 +1,4 @@
-package com.getir.patika.getirlite.retrofit
+package com.getir.patika.getirlite.data.retrofit
 
 import com.getir.patika.getirlite.data.entity.Category
 import com.getir.patika.getirlite.data.entity.Product

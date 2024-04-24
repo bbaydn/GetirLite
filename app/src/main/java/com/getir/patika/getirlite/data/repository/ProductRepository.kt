@@ -2,7 +2,7 @@ package com.getir.patika.getirlite.data.repository
 
 import android.util.Log
 import com.getir.patika.getirlite.data.entity.Product
-import com.getir.patika.getirlite.retrofit.ApiService
+import com.getir.patika.getirlite.data.retrofit.ApiService
 
 
 class ProductRepository(private val apiService: ApiService) {

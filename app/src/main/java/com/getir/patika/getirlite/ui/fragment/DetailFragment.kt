@@ -1,8 +1,7 @@
-package com.getir.patika.getirlite.detail
+package com.getir.patika.getirlite.ui.fragment
 
 import android.animation.ObjectAnimator
 import android.content.res.Resources
-import android.graphics.Bitmap
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,12 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.getir.patika.getirlite.R
+import com.getir.patika.getirlite.data.entity.DatabaseClient
 import com.getir.patika.getirlite.databinding.FragmentDetailBinding
+import com.getir.patika.getirlite.viewmodel.DetailViewModel
+import kotlinx.coroutines.launch
 
 
 class DetailFragment : Fragment() {
@@ -48,7 +49,7 @@ class DetailFragment : Fragment() {
             if(binding.includedToolbar.goToCart.visibility == View.VISIBLE) {
                 binding.includedToolbar.tvPrice.text = "5₺"
             } else {
-                toolbarItemVisible(true)
+                toolbarItemVisible()
             }
         //    clickAddToCart(addedFood.id?.toInt(), addedFood.name, addedFood.price, addedFood.imageURL, 1)
         }
@@ -59,20 +60,25 @@ class DetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val tempViewModel:DetailViewModel by viewModels()
+        val tempViewModel: DetailViewModel by viewModels()
         viewModel = tempViewModel
     }
 
-    private fun toolbarItemVisible(isVisible: Boolean) {
-        val visibility = if (isVisible) View.VISIBLE else View.GONE
+    private fun toolbarItemVisible() {
+        val productDao = DatabaseClient.getDatabase(requireContext()).cartDao()
         val goToCart = binding.includedToolbar.goToCart
-        goToCart.visibility = visibility
-
-        val screenWidth = Resources.getSystem().displayMetrics.widthPixels
-        val animator = ObjectAnimator.ofFloat(goToCart, "translationX", screenWidth.toFloat(), 0f)
-        animator.duration = 500
-        animator.interpolator = DecelerateInterpolator()
-        animator.start()
+        lifecycleScope.launch {
+            if (productDao.countProducts() == 0) {
+                goToCart.visibility = View.GONE
+            } else {
+                goToCart.visibility = View.VISIBLE
+                val screenWidth = Resources.getSystem().displayMetrics.widthPixels
+                val animator = ObjectAnimator.ofFloat(goToCart, "translationX", screenWidth.toFloat(), 0f)
+                animator.duration = 500
+                animator.interpolator = DecelerateInterpolator()
+                animator.start()
+            }
+        }
     }
 
     private fun clickAddToCart (id:Int?, name:String?, price:Double?, imageUrl: String?, count: Int?){

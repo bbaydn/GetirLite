@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/custom_button_shadow"
+    android:orientation="horizontal">
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/decreaseButton"
+        android:layout_width="32dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/minus_item_button"
+        android:text="-" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/quantityText"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="1"
+        android:textColor="@color/white"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        android:textSize="18sp" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/increaseButton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/add_item_button"
+        android:text="+" />
+</LinearLayout>

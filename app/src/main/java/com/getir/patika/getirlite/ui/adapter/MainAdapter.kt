@@ -7,12 +7,11 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.getir.patika.getirlite.data.entity.Category
 import com.getir.patika.getirlite.data.entity.Product
 import com.getir.patika.getirlite.databinding.GridListItemBinding
 import com.getir.patika.getirlite.databinding.HorizontalListItemBinding
-import com.getir.patika.getirlite.listing.ListFragmentDirections
-import com.getir.patika.getirlite.ui.viewmodel.CartViewModel
+import com.getir.patika.getirlite.ui.fragment.ListFragmentDirections
+import com.getir.patika.getirlite.viewmodel.CartViewModel
 
 class MainAdapter(
     private var recommendedProducts: List<Product>,
