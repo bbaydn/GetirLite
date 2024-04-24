@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top|end"
+    android:layout_marginTop="4dp"
+    android:layout_marginEnd="6dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageButton
+        android:id="@+id/imageButtonAddProductCustom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_shadow"
+        android:elevation="10dp"
+        android:src="@drawable/add_button" />
+
+    <!-- Custom içerik burada yer alacak -->
+    <LinearLayout
+        android:id="@+id/expandedArea"
+        android:layout_width="30dp"
+        android:layout_height="96dp"
+        android:orientation="vertical"
+        android:background="@color/purple"
+        android:visibility="gone"
+        >
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/decreaseButton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:elevation="10dp"
+            android:background="@drawable/add_item_button"
+            android:text="-" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/quantityText"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:text="1"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="18sp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/increaseButton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:paddingStart="4dp"
+            android:elevation="10dp"
+            android:background="@drawable/minus_item_button"
+            android:text="+" />
+    </LinearLayout>
+</FrameLayout>
