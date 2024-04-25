@@ -34,7 +34,11 @@ class BasketFragment : Fragment() {
         val factory = CartViewModelFactory(CartRepository(DatabaseClient.getDatabase(requireContext()).cartDao()))
         viewModel = ViewModelProvider(this, factory).get(CartViewModel::class.java)
 
-        adapter = BasketAdapter()
+        adapter = BasketAdapter() { product ->
+            viewModel.deleteProduct(product)
+            binding.includedToolbar.tvPrice.text = product.price.toString()
+        }
+
         binding.rvBasket.layoutManager = LinearLayoutManager(requireContext())
         binding.rvBasket.adapter = adapter
 
@@ -58,11 +62,15 @@ class BasketFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.products.observe(viewLifecycleOwner) { products ->
-            adapter.updateProducts(products)
+            adapter.updateProducts(products.toMutableList())
+        }
+        viewModel.products.observe(viewLifecycleOwner) { products ->
+            adapter.updateProducts(products.toMutableList())
         }
 
-       /* viewModel.suggestedBasket.observe(viewLifecycleOwner) { suggestedProducts ->
-            adapter.updateSuggestedProducts(suggestedProducts)
-        }*/
+        viewModel.deleteProductEvent.observe(viewLifecycleOwner) { deletedProduct ->
+            adapter.removeProduct(deletedProduct)
+        }
+
     }
 }

@@ -22,6 +22,8 @@ class CartViewModel(private val repository: CartRepository) : ViewModel() {
         val data = repository.getAllProduct()
         emit(data)
     }
+    val deleteProductEvent = MutableLiveData<CartProduct>()
+
 
     init {
         loadCartItems()
@@ -41,10 +43,10 @@ class CartViewModel(private val repository: CartRepository) : ViewModel() {
         }
     }
 
-    fun removeFromCart(cartProduct: CartProduct) {
+    fun deleteProduct(product: CartProduct) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteProduct(cartProduct)
-            loadCartItems()
+            repository.deleteProduct(product)
+            deleteProductEvent.postValue(product)
         }
     }
 }

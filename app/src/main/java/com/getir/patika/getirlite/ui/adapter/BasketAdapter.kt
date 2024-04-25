@@ -9,14 +9,23 @@ import com.getir.patika.getirlite.databinding.BasketProductBinding
 import com.getir.patika.getirlite.databinding.ProductHorizontalItemBinding
 
 
-class BasketAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var products: List<CartProduct> = emptyList()
+class BasketAdapter( private val onDeleteClick: (CartProduct) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private var products: MutableList<CartProduct> = mutableListOf()
     private var suggestedProducts: List<Product> = emptyList()
     var onItemClick: ((Product) -> Unit)? = null
     var onAddItemClick: ((CartProduct) -> Unit)? = null
-    fun updateProducts(products: List<CartProduct>) {
+    fun updateProducts(products: MutableList<CartProduct>) {
         this.products = products
         notifyDataSetChanged()
+    }
+
+
+    fun removeProduct(product: CartProduct) {
+        val index = products.indexOf(product)
+        if (index != -1) {
+            products.removeAt(index) // Ürünü listeden çıkar
+            notifyItemRemoved(index)
+        }
     }
 
     fun updateSuggestedProducts(suggestedProducts: List<Product>) {
@@ -40,7 +49,7 @@ class BasketAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return when (viewType) {
             TYPE_PRODUCT -> {
                 val binding = BasketProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                VerticalBasketAdapter.VerticalBasketHolder(binding)
+                VerticalBasketAdapter.VerticalBasketHolder(binding, onDeleteClick)
             }
             TYPE_SUGGESTED_PRODUCT -> {
                 val binding = ProductHorizontalItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -62,7 +71,6 @@ class BasketAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
         }
     }
-
 
     companion object {
         private const val TYPE_PRODUCT = 0

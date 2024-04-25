@@ -39,6 +39,7 @@ class DetailFragment : Fragment() {
 
         binding.productName.text = addedFood.name
         binding.price.text = addedFood.price.toString()
+        binding.attribute.text = addedFood.attribute.toString()
         Glide.with(binding.root.context)
             .load(addedFood.imageURL)
             .placeholder(R.drawable.def_image)

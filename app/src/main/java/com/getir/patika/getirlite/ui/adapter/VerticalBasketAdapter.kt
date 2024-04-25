@@ -10,13 +10,13 @@ import com.getir.patika.getirlite.R
 import com.getir.patika.getirlite.data.entity.CartProduct
 import com.getir.patika.getirlite.databinding.BasketProductBinding
 
-class VerticalBasketAdapter(private var products: List<CartProduct>) :
+class VerticalBasketAdapter(private var products: List<CartProduct>, private val onDeleteClick: (CartProduct) -> Unit) :
     ListAdapter<CartProduct, VerticalBasketAdapter.VerticalBasketHolder>(ProductDiffCallback()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VerticalBasketHolder {
         val binding = BasketProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return VerticalBasketHolder(binding)
+        return VerticalBasketHolder(binding, onDeleteClick)
     }
 
     override fun onBindViewHolder(holder: VerticalBasketHolder, position: Int) {
@@ -28,7 +28,7 @@ class VerticalBasketAdapter(private var products: List<CartProduct>) :
         submitList(products)
     }
 
-    class VerticalBasketHolder(private val binding: BasketProductBinding) : RecyclerView.ViewHolder(binding.root) {
+    class VerticalBasketHolder(private val binding: BasketProductBinding, private val onDeleteClick: (CartProduct) -> Unit) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(product: CartProduct) {
             binding.basketProductName.text = product.name ?: "N/A"
@@ -38,6 +38,10 @@ class VerticalBasketAdapter(private var products: List<CartProduct>) :
                 .placeholder(R.drawable.def_image)
                 .error(R.drawable.def_image)
                 .into(binding.imageView3)
+
+            binding.customButtonLayout.decreaseButton.setOnClickListener {
+                onDeleteClick(product)
+            }
 
 /*
             binding.imageButtonAddProduct.setOnClickListener {

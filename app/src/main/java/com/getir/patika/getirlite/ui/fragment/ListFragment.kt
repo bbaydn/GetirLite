@@ -47,7 +47,6 @@ class ListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentListBinding.inflate(inflater, container, false)
-
         setupRecyclerView()
         setupToolbar()
         observeViewModel()
@@ -85,6 +84,7 @@ class ListFragment : Fragment() {
                 binding.mainRecyclerView.adapter = mainAdapter
                 mainAdapter.updateProducts(products)
                 mainAdapter.updateSuggestedProducts(suggestedProducts)
+
             })
         })
 
@@ -95,16 +95,26 @@ class ListFragment : Fragment() {
     private fun toolbarItemVisible() {
         val productDao = DatabaseClient.getDatabase(requireContext()).cartDao()
         val goToCart = binding.includedToolbar.goToCart
-        lifecycleScope.launch {
+        val goToCartText = binding.includedToolbar.tvPrice
+
+            lifecycleScope.launch {
             if (productDao.countProducts() == 0) {
                 goToCart.visibility = View.GONE
+                goToCartText.visibility = View.GONE
+
             } else {
                 goToCart.visibility = View.VISIBLE
+                goToCartText.visibility = View.VISIBLE
+                goToCartText.text = "32.5₺"
                 val screenWidth = Resources.getSystem().displayMetrics.widthPixels
                 val animator = ObjectAnimator.ofFloat(goToCart, "translationX", screenWidth.toFloat(), 0f)
+                val animatorText = ObjectAnimator.ofFloat(goToCartText, "translationX", screenWidth.toFloat(), 0f)
                 animator.duration = 500
                 animator.interpolator = DecelerateInterpolator()
                 animator.start()
+                animatorText.duration = 500
+                animatorText.interpolator = DecelerateInterpolator()
+                animatorText.start()
             }
         }
     }
